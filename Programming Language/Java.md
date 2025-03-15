@@ -7,3 +7,11 @@ Unchecked Exception은 런타임에 확인되는 예외. RuntimeException을 상
 Error는 프로그램에 심각한 영향을 미치는 오류입니다. OutOfMemoryError, StackOverflowError 등이 있습니다.
 
 Exception은 프로그램 실행중에 발생할 수 있는 오류입니다. 프로그램에서 예외처리를 통해 회복 가능성이 있습니다.
+
+## 얕은 복사, 깊은 복사
+
+자바에서 객체 복사할 때 2가지 방법이 있다. 
+
+얕은 복사는 원본과 동일한 주소를 가리킨다. 동일한 참조값을 가지는 것. shallowCopy()
+
+깊은 복사는 같은 값을 가진 객체를 새로 생성하는 것. deepCopy()
