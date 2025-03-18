@@ -39,3 +39,28 @@ application.yml 파일에 ddl-auto옵션 설정할 수 있다. 옵션에는 none
 - fetch join: jpql 쿼리를 직접 만들 때 fetch join을 사용하면 미리 join 값을 가져올 수 있습니다. 이러면 추가적인 쿼리가 필요없어집니다.
 - @EntityGraph: 특정 필드만 즉시로딩
 - @BatchSize: 일정개수 batchsize만큼 한번의 쿼리로 조회를 합니다. 쿼리 수를 줄일 수 있습니다.
+
+
+## JPA에서 ID생성 전략
+@Id 어노테이션을 붙이면 엔티티의 id가 됩니다.
+여기에서 추가로 아무것도 하지 않으면 직접 id를 할당해주어야합니다. 
+
+자동 할당을 하고 싶으면 @GeneratedValue 를 사용해 strategy 옵션을 통해 생성 전략을 선택할 수 있습니다.
+
+AUTO, IDENTITY, SEQUENCE, TABLE 이 있습니다.
+
+- AUTO
+  
+  데이터베이스에 따라서 생성전략을 자동으로 선택합니다.
+
+- IDENTITY
+  
+  id 생성을 DB에 위임합니다. 주로 MySQL, PostgreSQL 등에 사용됩니다. 이것을 사용하는 경우 insert에 지연 쓰기가 적용되지 않습니다. 즉, 여러 데이터를 한번에 insert를 못하고 하나씩 insert가 됩니다.
+
+- SEQUENCE
+  
+  시퀀스 키 전략을 지원하는 DB에서 사용할 수 있습니다. 데이터베이스 시퀀스란, 유일한 값을 자동으로 생성하게 하는 객체입니다. 엔티티는 트랜잭션을 커밋해 플러시가 발생하면 저장합니다.
+
+- TABLE
+  
+  키 생성 전용 테이블을 만들어 시퀀스를 흉내내는 전략입니다. 따로 테이블이 생성되어 추가적으로 select, update 쿼리가 발생하지만, 모든 DB에 적용할 수 있다는 장점이 있습니다.
